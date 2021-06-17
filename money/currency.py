@@ -8,10 +8,10 @@ class Money:
         self._amount = amount
 
     def times(self, times: float) -> Money:
-        return Dollar(self._amount * times)
+        return self.__class__((self._amount * times))
 
     def __eq__(self, other: Any) -> bool:
-        if not isinstance(other, Money):
+        if not isinstance(other, self.__class__):
             return False
         return self._amount == other._amount
 
