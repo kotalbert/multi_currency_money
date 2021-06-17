@@ -1,14 +1,15 @@
 from __future__ import annotations
 
 from typing import Any
+from abc import ABC, abstractmethod
 
 
-class Money:
+class Money(ABC):
     def __init__(self, amount: float):
         self._amount = amount
 
     @staticmethod
-    def dollar(amount: float) -> Dollar:
+    def dollar(amount: float) -> Money:
         return Dollar(amount)
 
     def times(self, times: float) -> Money:
