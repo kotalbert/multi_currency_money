@@ -7,6 +7,10 @@ class Money:
     def __init__(self, amount: float):
         self._amount = amount
 
+    @staticmethod
+    def dollar(amount: float) -> Dollar:
+        return Dollar(amount)
+
     def times(self, times: float) -> Money:
         return self.__class__((self._amount * times))
 
