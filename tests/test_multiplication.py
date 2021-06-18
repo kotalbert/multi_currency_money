@@ -1,4 +1,4 @@
-from money.currency import Dollar, Franc, Money
+from money.currency import Money
 
 
 def test_multiplication():
