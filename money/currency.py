@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class Money(ABC):
@@ -16,8 +16,9 @@ class Money(ABC):
     def franc(amount: float) -> Money:
         return Franc(amount)
 
+    @abstractmethod
     def times(self, times: float) -> Money:
-        return self.__class__((self._amount * times))
+        pass
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, self.__class__):
@@ -26,8 +27,10 @@ class Money(ABC):
 
 
 class Dollar(Money):
-    pass
+    def times(self, times: float) -> Money:
+        return Dollar(self._amount * times)
 
 
 class Franc(Money):
-    pass
+    def times(self, times: float) -> Money:
+        return Franc(self._amount * times)
