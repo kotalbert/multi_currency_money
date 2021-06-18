@@ -12,6 +12,10 @@ class Money(ABC):
     def dollar(amount: float) -> Money:
         return Dollar(amount)
 
+    @staticmethod
+    def franc(amount: float) -> Money:
+        return Franc(amount)
+
     def times(self, times: float) -> Money:
         return self.__class__((self._amount * times))
 
