@@ -5,9 +5,9 @@ from typing import Any
 
 
 class Money(ABC):
-    def __init__(self, amount: float):
+    def __init__(self, amount: float, currency: str):
         self._amount = amount
-        self._currency = ''
+        self._currency = currency
 
     @staticmethod
     def dollar(amount: float) -> Money:
@@ -33,8 +33,7 @@ class Money(ABC):
 
 class Dollar(Money):
     def __init__(self, amount: float):
-        super().__init__(amount)
-        self._currency = 'USD'
+        super().__init__(amount, 'USD')
 
     def times(self, times: float) -> Money:
         return Dollar(self._amount * times)
@@ -42,8 +41,7 @@ class Dollar(Money):
 
 class Franc(Money):
     def __init__(self, amount: float):
-        super().__init__(amount)
-        self._currency = 'CHF'
+        super().__init__(amount, 'CHF')
 
     def times(self, times: float) -> Money:
         return Franc(self._amount * times)
