@@ -7,6 +7,7 @@ from typing import Any
 class Money(ABC):
     def __init__(self, amount: float):
         self._amount = amount
+        self._currency = ''
 
     @staticmethod
     def dollar(amount: float) -> Money:
@@ -20,9 +21,9 @@ class Money(ABC):
     def times(self, times: float) -> Money:
         pass
 
-    @abstractmethod
+    @property
     def currency(self) -> str:
-        pass
+        return self._currency
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, self.__class__):
@@ -31,16 +32,18 @@ class Money(ABC):
 
 
 class Dollar(Money):
-    def currency(self) -> str:
-        return 'USD'
+    def __init__(self, amount: float):
+        super().__init__(amount)
+        self._currency = 'USD'
 
     def times(self, times: float) -> Money:
         return Dollar(self._amount * times)
 
 
 class Franc(Money):
-    def currency(self) -> str:
-        return 'CHF'
+    def __init__(self, amount: float):
+        super().__init__(amount)
+        self._currency = 'CHF'
 
     def times(self, times: float) -> Money:
         return Franc(self._amount * times)
