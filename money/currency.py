@@ -27,4 +27,4 @@ class Money:
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, self.__class__):
             return False
-        return self._amount == other._amount
+        return (self._amount == other._amount) & (self._currency == other._currency)
